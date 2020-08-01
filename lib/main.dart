@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app.dart';
+import 'widgets/themes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,5 +11,5 @@ void main() {
     DeviceOrientation.landscapeRight,
     DeviceOrientation.portraitUp
   ]);
-  runApp(App());
+  runApp(ThemeHandlerWidget(initTheme: lightMode, child: App()));
 }
