@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
+import '../db/database_manager.dart';
 import '../models/entry.dart';
 import '../models/journal.dart';
 
@@ -29,23 +29,9 @@ class _JournalEntryListDisplayState extends State<JournalEntryListDisplay> {
   }
 
   void loadJournal() async {
+    final databaseManager = DatabaseManager.getInstance();
     // journal = fakeJournal;
-    final Database database = await openDatabase(
-      'journal.db', version: 1, onCreate: (Database db, int version) async {
-        await db.execute(
-          'CREATE TABLE IF NOT EXISTS journal_entries(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, body TEXT NOT NULL, rating TEXT NOT NULL, date TEXT NOT NULL);' 
-        );
-      }
-    );
-    List<Map> journalRecords = await database.rawQuery('SELECT * FROM journal_entries;');
-    final entries = journalRecords.map( (record) {
-      return Entry(
-        title: record['title'],
-        body: record['body'],
-        rating: record['rating'],
-        date: DateTime.parse(record['date'])
-      );
-    }).toList();
+    List<Entry> entries = await databaseManager.journalEntries();
     // print('Journal Records: ' + journalRecords.toString());
     // print(entries[0].title);
     setState(() {

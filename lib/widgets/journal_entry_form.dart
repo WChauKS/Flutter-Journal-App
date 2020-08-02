@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
+import '../db/database_manager.dart';
 import '../db/journal_entry_dto.dart';
 
 class JournalEntryForm extends StatefulWidget {
@@ -105,21 +105,8 @@ class _JournalEntryFormState extends State<JournalEntryForm> {
             addDateToEntry();
             // await deleteDatabase('journal.db');     // DELETE ME
             // var db = await openDatabase('journal.db');
-            final Database database = await openDatabase(
-              'journal.db', version: 1, onCreate: (Database db, int version) async {
-                await db.execute(
-                  'CREATE TABLE IF NOT EXISTS journal_entries(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, body TEXT NOT NULL, rating TEXT NOT NULL, date TEXT NOT NULL);' 
-                ); 
-              }
-            );
-            await database.transaction( (txn) async{
-              await txn.rawInsert('INSERT INTO journal_entries(title, body, rating, date) VALUES(?, ?, ?, ?);',
-              [journalEntryFields.title, journalEntryFields.body, journalEntryFields.rating, journalEntryFields.date]
-              );
-            });
-
-            await database.close();
-
+            final databaseManager = DatabaseManager.getInstance();
+            databaseManager.saveJournalEntry(dto: journalEntryFields);
             pushJournalEntriesScreen(context);
           }
         },
