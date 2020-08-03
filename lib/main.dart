@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app.dart';
-import 'widgets/themes.dart';
+import 'db/database_manager.dart';
 
-void main() {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
     DeviceOrientation.portraitUp
   ]);
-  runApp(ThemeHandlerWidget(initTheme: lightMode, child: App()));
+  await DatabaseManager.initialize();
+  runApp(App());
 }
