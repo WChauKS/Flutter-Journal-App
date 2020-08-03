@@ -67,16 +67,22 @@ class _JournalEntryFormState extends State<JournalEntryForm> {
         ),
         onSaved: (value) {
           if(fieldTitle == 'Title') { journalEntryFields.title = value; }
-          else if(fieldTitle == 'Body') { journalEntryFields.body = value; }
-          if(fieldTitle == 'Rating') { journalEntryFields.rating = value; }
+          if(fieldTitle == 'Body') { journalEntryFields.body = value; }
+          if(fieldTitle == 'Rating') { journalEntryFields.rating = int.parse(value); }
         },
         validator: (value) {
           if (value.isEmpty) {
             return 'Please enter a $fieldTitle';
           } 
-          // else if (fieldTitle == 'Rating' && value is int){
-
-          // }
+          else if (fieldTitle == 'Rating'){
+            switch(int.parse(value)) {
+              case 1:
+              case 2:
+              case 3:
+              case 4: return null;
+              default: return 'Please enter a Rating between 1 to 4';
+            }
+          }
           else {
             return null;
           }
