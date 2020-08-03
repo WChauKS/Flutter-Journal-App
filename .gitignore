@@ -41,3 +41,8 @@ app.*.map.json
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# db queries
+sql_create_schema.txt
+sql_insert.txt
+sql_select.txt
