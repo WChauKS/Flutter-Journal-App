@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:journal/widgets/journal_entry_list_display.dart';
 import '../widgets/settings_drawer.dart';
 
-
 class JournalEntries extends StatelessWidget {
 
   static final routeName = 'journal';

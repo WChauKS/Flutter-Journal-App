@@ -1,7 +1,7 @@
 class JournalEntryDTO {
   String title;
   String body;
-  String rating;
+  int rating;
   String date;
   
   String toString() {
