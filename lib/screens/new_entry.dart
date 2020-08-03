@@ -12,7 +12,7 @@ class NewEntry extends StatelessWidget {
       appBar: AppBar(
         title: Text('Create a New Journal Entry'),
       ),
-      drawer: SettingsDrawer(),
+      endDrawer: SettingsDrawer(),
       body: SingleChildScrollView(
         child: JournalEntryForm(),
       )

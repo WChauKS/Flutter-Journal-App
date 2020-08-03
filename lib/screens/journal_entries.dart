@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:journal/widgets/journal_entry_list_display.dart';
 import '../widgets/settings_drawer.dart';
 
 class JournalEntries extends StatelessWidget {
@@ -11,10 +12,18 @@ class JournalEntries extends StatelessWidget {
       appBar: AppBar(
         title: Text('Journal Entries'),
       ),
-      drawer: SettingsDrawer(),
-      body: SingleChildScrollView(
-        child: Text('List goes here...'),
-      )
+      endDrawer: SettingsDrawer(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => pushNewEntryScreen(context),
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blue,
+        ),
+        body: JournalEntryListDisplay(),
+      
     );
+  }
+
+  void pushNewEntryScreen(BuildContext context) {
+    Navigator.of(context).pushNamed('newEntry');
   }
 }
