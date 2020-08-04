@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:journal/screens/new_entry.dart';
-import 'package:journal/widgets/themes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'screens/new_entry.dart';
 import 'screens/welcome.dart';
 import 'screens/journal_entries.dart';
+import 'widgets/themes.dart';
 
 class App extends StatefulWidget {
 
@@ -18,12 +17,11 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Journal',
-        theme: lightMode,
+        theme: ThemeSwitcher.of(context).curTheme,
         routes: App.routes
     );
   }

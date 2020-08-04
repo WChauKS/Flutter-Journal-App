@@ -1,6 +1,6 @@
+import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'journal_entry_dto.dart';
-import 'package:flutter/services.dart';
 import '../models/entry.dart';
 
 const SQL_CREATE_SCHEMA = 'assets/sql_create_schema.txt';
