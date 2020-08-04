@@ -1,43 +1,46 @@
 import 'package:flutter/material.dart';
 // followed https://stackoverflow.com/questions/54757480/flutter-dynamic-theming
 
-ThemeData lightMode = ThemeData.light();
-ThemeData darkMode = ThemeData.dark();
+final ThemeData lightMode = ThemeData.light();
+final ThemeData darkMode = ThemeData.dark();
 
-class ThemeHandler extends InheritedWidget {
-  final ThemeData theme;
-  ThemeHandler({this.theme, Widget child}) : super(child: child);
+class ThemeSwitcher extends InheritedWidget {
+  final _ThemeSwitcherWidgetState data;
+
+  const ThemeSwitcher({Key key, this.data, Widget child}) : super(key: key, child: child);
+
+  static _ThemeSwitcherWidgetState of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ThemeSwitcher>().data;
+  }
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) => true;
-
-  static ThemeHandler of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<ThemeHandler>();
+  bool updateShouldNotify(ThemeSwitcher oldWidget) => oldWidget != this;
 }
 
-class ThemeHandlerWidget extends StatefulWidget {
+class ThemeSwitcherWidget extends StatefulWidget {
   final ThemeData initTheme;
   final Widget child;
 
-  ThemeHandlerWidget({Key key, this.initTheme, this.child});
+  ThemeSwitcherWidget({Key key, this.initTheme, this.child}) : super(key: key);
 
   @override
-  _ThemeHandlerWidgetState createState() => _ThemeHandlerWidgetState();
+  _ThemeSwitcherWidgetState createState() => _ThemeSwitcherWidgetState();
 }
 
-class _ThemeHandlerWidgetState extends State<ThemeHandlerWidget> {
-  ThemeData theme;
+class _ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
+  ThemeData curTheme;
 
-  void changeTheme(ThemeData newTheme) {
+  void switchTheme(ThemeData newTheme) {
     setState(() {
-      theme = newTheme;
+      curTheme = newTheme;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    theme = theme ?? widget.initTheme;
-    return ThemeHandler(
-      theme: theme,
+    curTheme = curTheme ?? widget.initTheme;
+    return ThemeSwitcher(
+      data: this,
       child: widget.child,
     );
   }

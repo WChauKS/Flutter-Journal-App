@@ -5,15 +5,8 @@ import '../models/journal.dart';
 import '../screens/entry_details.dart';
 import 'entry_details_view.dart';
 
-// DELETE ME
-// final Journal fakeJournal = Journal(name: 'Journal',
-//   entries: [
-//     Entry(id: 1, title: 'Fake1', body: 'Bod1', rating: 1),
-//     Entry(id: 1, title: 'Fake2', body: 'Bod2', rating: 2),
-//     Entry(id: 1, title: 'Fake3', body: 'Bod3', rating: 3),
-//     Entry(id: 1, title: 'Fake4', body: 'Bod4', rating: 4),
-//   ]
-// );
+// followed https://www.youtube.com/watch?v=1i73KbI2Uhg as a guide for creating
+// the master detail scaffold
 
 class JournalEntryListDisplay extends StatefulWidget {
   @override
@@ -28,7 +21,6 @@ class _JournalEntryListDisplayState extends State<JournalEntryListDisplay> {
   void initState() {
     super.initState();
     loadJournal();
-    // journal = fakeJournal;
   }
 
   void loadJournal() async {

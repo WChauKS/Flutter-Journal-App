@@ -1,3 +1,5 @@
+// MODEL CLASS FOR JOURNAL
+
 import 'entry.dart';
 
 class Journal {
