@@ -1,16 +1,17 @@
 # journal
 
-A new Flutter project.
+Flutter Journal Application
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+This application models a journal, enabling users to create journal entries, which have a title, body, date, and rating. The app allows users to view existng journal entries in a list, view a single entry's details, and add new entries to the journal. The user is also able to change the theme of the app from light mode to dark mode and vice versa.
 
-A few resources to get you started if this is your first Flutter project:
+This project includes:
+- adaptive user interface by using a master detail interface
+- forms to capture, validate, and save user input
+- file I/O with text assets with rootBundle
+- loading, modification, and saving of application configurations using the shared_preferences plugin
+- basic CRUD features using sqflite
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Quick Demo
+![Journal Demo](demo/journalDemo.gif)
