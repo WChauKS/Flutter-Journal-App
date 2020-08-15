@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/entry.dart';
+import '../utility/format_date.dart';
 
 class EntryDetailsView extends StatelessWidget {
   final Entry entry;
@@ -15,9 +16,9 @@ class EntryDetailsView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(entry.title, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                Spacer(),
-                Text('Date:' + entry.date.toIso8601String())
+                Expanded(child: Text(entry.title, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold))),
+                // Spacer(),
+                Expanded(child: Text('Date: ' + formatDate(entry.date, 1)))
               ]
             ),
             Row(
@@ -28,7 +29,7 @@ class EntryDetailsView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(entry.body, style: TextStyle(fontSize: 20)),
+                Expanded(child: Text(entry.body, style: TextStyle(fontSize: 20))),
               ]
             )
           ],

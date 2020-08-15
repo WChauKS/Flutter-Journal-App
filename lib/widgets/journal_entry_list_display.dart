@@ -3,6 +3,7 @@ import '../db/database_manager.dart';
 import '../models/entry.dart';
 import '../models/journal.dart';
 import '../screens/entry_details.dart';
+import '../utility/format_date.dart';
 import 'entry_details_view.dart';
 
 // followed https://www.youtube.com/watch?v=1i73KbI2Uhg as a guide for creating
@@ -84,7 +85,7 @@ class _JournalEntryListDisplayState extends State<JournalEntryListDisplay> {
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
           title: Text(journal.entries[index].title),
-          subtitle: Text(journal.entries[index].date.toIso8601String()),
+          subtitle: Text(formatDate(journal.entries[index].date, 0)),
           onTap: () {
             return onSelect(journal.entries[index]);
           },
